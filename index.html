@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TactileReflex — noise-statistics-driven vision-tactile reflex control for force-sensitive manipulation. Accepted at IROS 2026.">
+  <meta property="og:title" content="TactileReflex | IROS 2026">
+  <meta property="og:description" content="A transparent, calibration-driven tactile safety layer for fragile-object manipulation.">
+  <meta property="og:image" content="assets/system-overview.jpg">
+  <title>TactileReflex | IROS 2026</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="video.css">
+  <link rel="stylesheet" href="responsive-fixes.css">
+</head>
+<body>
+  <header class="nav-wrap">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="brand-mark">TR</span><span>TactileReflex</span></a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#citation">BibTeX</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="eyebrow"><span class="pulse"></span> Accepted at IEEE/RSJ IROS 2026</div>
+      <h1>Tactile<span>Reflex</span></h1>
+      <p class="subtitle">Noise-Statistics-Driven Vision-Tactile Reflex Control<br>for Force-Sensitive Manipulation</p>
+      <div class="authors">Ziyan Feng<sup>1</sup> · Yulong Fu<sup>1</sup> · Zheng Li<sup>1</sup> · Yuxin He<sup>1</sup> · Jieji Ren<sup>2</sup><br>Yudong Zhong<sup>1</sup> · Lujia Wang<sup>1</sup> · Jinni Zhou<sup>1</sup> · <a href="mailto:qiangnie@hkust-gz.edu.cn">Qiang Nie<sup>1</sup></a></div>
+      <div class="affiliations">
+        <p><sup>1</sup> Thrust of Robotics and Autonomous Systems, The Hong Kong University of Science and Technology (Guangzhou)</p>
+        <p><sup>2</sup> School of Mechanical Engineering, Shanghai Jiao Tong University</p>
+      </div>
+      <div class="actions">
+        <a class="button primary" href="assets/tactile-reflex-paper.pdf">↗ Paper</a>
+        <span class="button disabled" title="Coming soon">Code · soon</span>
+        <a class="button" href="#video">▶ Video</a>
+        <a class="button" href="#citation">Cite</a>
+      </div>
+      <div id="video" class="hero-visual hero-video">
+        <video controls playsinline preload="metadata" poster="assets/experiment.jpg">
+          <source src="assets/tactile-reflex-video.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </section>
+
+    <section class="metrics container" aria-label="Key results">
+      <article><strong>9/10</strong><span>Dynamic pouring<br>success</span></article>
+      <article><strong>5/5</strong><span>Full-controller<br>ablation success</span></article>
+      <article><strong>≈ 2 min</strong><span>Noise-statistics<br>calibration</span></article>
+      <article><strong>≈ 12 Hz</strong><span>Closed-loop<br>reflex control</span></article>
+    </section>
+
+    <section id="abstract" class="abstract-section container">
+      <aside>
+        <div class="section-label">Abstract</div>
+        <div class="abstract-tags" aria-label="Paper topics">
+          <span>Vision–tactile sensing</span>
+          <span>Reflex control</span>
+          <span>Fragile manipulation</span>
+        </div>
+      </aside>
+      <div class="abstract-copy">
+        <p>Manipulating fragile deformable containers, such as disposable plastic cups filled with liquid, demands real-time grip-force adaptation within an extremely narrow force margin: insufficient force causes slip, while excessive force irreversibly deforms the thin wall.</p>
+        <p>We propose a <strong>noise-statistics-based, calibration-driven reflex control paradigm</strong> with vision-based tactile sensing. By analyzing the sensor’s intrinsic noise characteristics through a brief static-hold-and-unload protocol, all controller thresholds are derived directly—eliminating external force calibration, trial-and-error manual tuning, and material-specific physical models.</p>
+        <p>Instantiating this paradigm, <strong>TactileReflex</strong> is a three-channel closed-loop controller that extracts shear intensity (<i>S</i><sub>y</sub>), contact intensity (<i>F</i><sub>n</sub>), and center of pressure (<i>C</i>) from dual visuo-tactile sensors. Its prioritized reflex channels operate at approximately 12 Hz for slip suppression, weight-adaptive release, and force protection.</p>
+        <p>In ablation experiments, only the complete three-channel system prevents irreversible container deformation, achieving <strong>5/5 successes</strong>. In dynamic pouring, fixed-effort baselines fail in all ten trials, while TactileReflex achieves <strong>9/10 successes</strong> across two water volumes. As an interpretable, self-contained controller, it can serve as a plug-and-play safety layer beneath teleoperation and vision-language-action policies.</p>
+      </div>
+      <figure class="abstract-system">
+        <div class="system-image-wrap">
+          <img src="assets/system-overview.jpg" alt="TactileReflex system architecture, hardware setup, and tactile sensing visualization">
+        </div>
+        <figcaption><b>System overview</b><span>A low-level tactile reflex layer beneath high-level VLA, teleoperation, or trajectory policies.</span></figcaption>
+      </figure>
+    </section>
+
+    <section id="overview" class="section container split">
+      <div class="section-label">01 / Motivation</div>
+      <div>
+        <h2>Grip firmly.<br><em>Never crush.</em></h2>
+        <p class="lead">Fragile deformable containers leave robots an extremely narrow force margin: too little grip causes slip; too much causes irreversible deformation. TactileReflex continuously adapts the grasp inside that margin.</p>
+        <div class="problem-grid">
+          <div><span>↓</span><b>Under-gripping</b><p>Liquid motion shifts the load and causes pose drift or object drop.</p></div>
+          <div><span>×</span><b>Over-gripping</b><p>Thin walls permanently deform before conventional safeguards react.</p></div>
+          <div><span>✓</span><b>Our reflex</b><p>Fast, interpretable corrections stabilize the object locally.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="section dark">
+      <div class="container">
+        <div class="section-label">02 / Method</div>
+        <h2>Three signals.<br><em>Three prioritized reflexes.</em></h2>
+        <p class="lead narrow">Dual vision-based tactile sensors turn raw contact images into interpretable proxies. Every threshold comes from a brief static-hold-and-unload calibration—no external force sensor, material model, or trial-and-error tuning.</p>
+        <div class="channels">
+          <article><span class="number">01</span><span class="signal">S<sub>y</sub></span><h3>Anti-slip</h3><p>Shear intensity detects incipient slip and tightens the grasp immediately.</p><small>TIGHTEN ↑</small></article>
+          <article><span class="number">02</span><span class="signal">C</span><h3>Adaptive release</h3><p>Center-of-pressure shift tracks a lighter load and safely releases excess effort.</p><small>RELAX ↓</small></article>
+          <article><span class="number">03</span><span class="signal">F<sub>n</sub></span><h3>Force protection</h3><p>Contact intensity enforces a hard safety boundary and overrides other channels.</p><small>PROTECT ⊣</small></article>
+        </div>
+        <figure class="wide-figure"><img src="assets/tactile-signals.png" alt="TactileReflex signal validation time-series"><figcaption>Closed-loop tactile proxy responses during fragile-container manipulation.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="results" class="section container">
+      <div class="section-label">03 / Experiments</div>
+      <div class="results-head"><h2>Built for the<br><em>messy real world.</em></h2><p>Validated on real hardware with transparent cups, changing water loads, sensor asymmetry, and haptic-free VR teleoperation.</p></div>
+      <div class="gallery">
+        <figure class="large"><img src="assets/experiment.jpg" alt="Robot manipulation experiment"><figcaption><b>Dynamic pouring</b><span>Active reflex control adapts to liquid-induced load shifts.</span></figcaption></figure>
+        <figure><img src="assets/hardware.jpg" alt="Robot and tactile hardware"><figcaption><b>Real hardware</b><span>Dual MC-Tac sensors on a Piper gripper.</span></figcaption></figure>
+        <figure><img src="assets/teleoperation.jpg" alt="VR teleoperation experiment"><figcaption><b>Safety layer</b><span>Plug-and-play protection beneath teleoperation or VLA policies.</span></figcaption></figure>
+      </div>
+      <div class="comparison">
+        <div><span>Fixed-effort baseline</span><strong>0 / 10</strong><p>All pouring trials fail under dynamic load.</p></div>
+        <div class="win"><span>TactileReflex</span><strong>9 / 10</strong><p>Robust across two water volumes.</p></div>
+      </div>
+    </section>
+
+    <section id="citation" class="section citation">
+      <div class="container citation-layout">
+        <div class="citation-heading"><div class="section-label">04 / Citation</div><h2>Build on<br><em>TactileReflex.</em></h2><p>Please cite our IROS 2026 paper if you find this work useful.</p></div>
+        <div class="code-wrap"><div class="code-label">BIBTEX</div><button class="copy" data-copy>Copy</button><pre><code id="bibtex">@inproceedings{feng2026tactileReflex,
+  title     = {TactileReflex: Noise-Statistics-Driven
+               Vision-Tactile Reflex Control for
+               Force-Sensitive Manipulation},
+  author    = {Feng, Ziyan and Fu, Yulong and Li, Zheng
+               and He, Yuxin and Ren, Jieji and Zhong, Yudong
+               and Wang, Lujia and Zhou, Jinni and Nie, Qiang},
+  booktitle = {IEEE/RSJ International Conference on
+               Intelligent Robots and Systems (IROS)},
+  year      = {2026}
+}</code></pre></div>
+      </div>
+    </section>
+  </main>
+  <footer class="container"><span>© 2026 TactileReflex Team</span><span>HKUST (Guangzhou) · SJTU School of Mechanical Engineering · IROS 2026</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
