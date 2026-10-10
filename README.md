@@ -14,4 +14,4 @@ Open `http://localhost:8000`.
 
 Create a repository named `<username>.github.io` (personal site) or any repository (project site), copy the contents of this folder to its root, then enable **Settings → Pages → Deploy from a branch** and select the `main` branch at `/ (root)`.
 
-Before publishing, replace the disabled Code and Video buttons in `index.html` once public URLs are available.
+The paper and video are linked from the project page. The Code button and dedicated Code Release section point to the public [TactileReflex research-code repository](https://github.com/shayfeng/tactile-reflex-open-source), including the original and optimized MC-TAC controllers, calibration script, and optional DM-TAC / Xense backends.
