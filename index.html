@@ -22,7 +22,7 @@
       <a class="brand" href="#top"><span class="brand-mark">TR</span><span>TactileReflex</span></a>
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
       <div class="nav-links">
-        <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#citation">BibTeX</a>
+        <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#code">Code</a><a href="#citation">BibTeX</a>
       </div>
     </nav>
   </header>
@@ -39,7 +39,7 @@
       </div>
       <div class="actions">
         <a class="button primary" href="https://arxiv.org/abs/2605.23568" target="_blank" rel="noopener noreferrer">↗ Paper</a>
-        <span class="button disabled" title="Coming soon">Code · soon</span>
+        <a class="button" href="https://github.com/shayfeng/tactile-reflex-open-source" target="_blank" rel="noopener noreferrer" aria-label="View TactileReflex source code on GitHub">↗ Code (GitHub)</a>
         <a class="button" href="#video">▶ Video</a>
         <a class="button" href="#citation">Cite</a>
       </div>
@@ -122,9 +122,45 @@
       </div>
     </section>
 
+
+    <section id="code" class="section code-section">
+      <div class="container code-layout">
+        <div class="code-heading">
+          <div class="section-label">04 / Code Release</div>
+          <h2>Explore the<br><em>reflex stack.</em></h2>
+          <p class="lead">The research code is publicly available, including tactile signal processing, three-channel reflex control, calibration utilities, and instructions for reproducing the experiments.</p>
+          <div class="actions code-actions">
+            <a class="button primary" href="https://github.com/shayfeng/tactile-reflex-open-source" target="_blank" rel="noopener noreferrer">↗ GitHub repository</a>
+            <a class="button" href="https://github.com/shayfeng/tactile-reflex-open-source/blob/main/README.md" target="_blank" rel="noopener noreferrer">Setup &amp; reproduction guide ↗</a>
+          </div>
+        </div>
+        <div class="release-grid">
+          <article class="release-main">
+            <div class="release-overline">PAPER IMPLEMENTATION · MC-TAC</div>
+            <h3>Dual-sensor reflex control</h3>
+            <p>The original experimental controller (approximately 12 Hz) and a separately optimized, 25 Hz-target implementation. A calibration script estimates candidate thresholds from static-hold, slip, and unloading trials.</p>
+            <div class="release-links">
+              <a href="https://github.com/shayfeng/tactile-reflex-open-source/blob/main/tactile_exp_v1.py" target="_blank" rel="noopener noreferrer">Original controller ↗</a>
+              <a href="https://github.com/shayfeng/tactile-reflex-open-source/blob/main/tactile_exp_v2.py" target="_blank" rel="noopener noreferrer">Optimized controller ↗</a>
+              <a href="https://github.com/shayfeng/tactile-reflex-open-source/blob/main/calibrate_thresholds.py" target="_blank" rel="noopener noreferrer">Calibration script ↗</a>
+            </div>
+          </article>
+          <article>
+            <div class="release-overline">ADDITIONAL SENSOR BACKENDS</div>
+            <h3>DM-TAC &amp; Xense</h3>
+            <p>Additional implementations of the reflex strategy for other tactile sensors. Vendor SDKs, axis checks, and setup-specific recalibration are required before hardware use.</p>
+            <div class="release-links">
+              <a href="https://github.com/shayfeng/tactile-reflex-open-source/blob/main/tactile_reflex_dmtac.py" target="_blank" rel="noopener noreferrer">DM-TAC backend ↗</a>
+              <a href="https://github.com/shayfeng/tactile-reflex-open-source/blob/main/tactile_reflex_xsense.py" target="_blank" rel="noopener noreferrer">Xense backend ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="citation" class="section citation">
       <div class="container citation-layout">
-        <div class="citation-heading"><div class="section-label">04 / Citation</div><h2>Build on<br><em>TactileReflex.</em></h2><p>Please cite our IROS 2026 paper if you find this work useful.</p></div>
+        <div class="citation-heading"><div class="section-label">05 / Citation</div><h2>Build on<br><em>TactileReflex.</em></h2><p>Please cite our IROS 2026 paper if you find this work useful.</p></div>
         <div class="code-wrap"><div class="code-label">BIBTEX</div><button class="copy" data-copy>Copy</button><pre><code id="bibtex">@inproceedings{feng2026tactileReflex,
   title     = {TactileReflex: Noise-Statistics-Driven
                Vision-Tactile Reflex Control for
